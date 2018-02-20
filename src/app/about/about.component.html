@@ -1,3 +1,10 @@
 <p>
-  about works!
+  This is about <br/><br/>
+  <a href="" (click)="sendMeHome()"><strong>Go back</strong></a>
 </p>
+
+<ul>
+  <li *ngFor="let goal of goals">
+    {{goal}}
+  </li>
+</ul>
