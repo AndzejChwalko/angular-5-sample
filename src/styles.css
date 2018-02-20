@@ -28,3 +28,10 @@ a {
     color: #fff;
     text-decoration: none;
 }
+
+.life-container {
+    background: #3fa0e1;
+    padding: .5em;
+    font-weight: bold;
+    cursor: pointer;
+}
