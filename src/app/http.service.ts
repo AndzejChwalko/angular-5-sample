@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { HttpClientModule, HttpClient } from '@angular/common/http';  
+import { HttpClientModule, HttpClient, HttpParams } from '@angular/common/http';  
 
 @Injectable()
 export class HttpService {
@@ -9,8 +9,15 @@ export class HttpService {
 
   constructor(private httpClient: HttpClient) {  }
 
-  doGet(url: string) : any {
-    return this.httpClient.get(this.BASE_URL + url);
+  doGet(url: string, params?: any) : any {
+    let urlParams = new HttpParams({
+      fromObject: params
+    });
+    return this.httpClient.get(this.BASE_URL + url, {params:urlParams});
+  }
+
+  doPost(url: string, body: object) : any {
+    return this.httpClient.post(this.BASE_URL + url, body);
   }
 
 }

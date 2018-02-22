@@ -1,7 +1,16 @@
 <div>
-  <div *ngFor="let stop of stopsNames">
-    <p class="life-container">
-      <b>{{stop}}</b>
-    </p>
+  <div class=" color-dark">
+      <div class="col input">
+          <input type="text" autocomplete="off" class="search-txt" name="item" placeholder="Enter stop title..." [(ngModel)]="searchText">
+      </div>
+    </div>
+
+  <div class="container color-light">
+      <div *ngFor="let stop of stopsNames | search: searchText: stopsNames"
+       class="stop title-container"
+       [innerHTML]="stop | highlight: searchText"
+       (click)="viewStopDetails(stop)">
+      </div>
   </div>
+ 
 </div>

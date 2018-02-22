@@ -29,9 +29,55 @@ a {
     text-decoration: none;
 }
 
+.container {
+    display: grid;
+    grid-template-columns: 50% auto;
+}
+
+.col {
+    padding: .4em 1.3em;
+}
+
+.col.input {
+    /*margin: 1.5em;*/
+    padding: 1.5em;
+}
+
+
+input.txt {
+    border: 0;
+    padding: 1em;
+    width: 80%;
+    /*margin-bottom: 2em;*/
+}
+
+input.btn {
+    border: 0;
+    display: block;
+    padding: 1em 3em;
+    background: #a5f883;
+    color: #003a61;
+    float: right;
+    cursor: pointer;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 50% auto;
+}
+
+.color-dark {
+    background: #2885c4;
+}
+
+.color-light {
+    background: #57b3f1;
+}
+
 .life-container {
     background: #3fa0e1;
     padding: .5em;
     font-weight: bold;
     cursor: pointer;
 }
+

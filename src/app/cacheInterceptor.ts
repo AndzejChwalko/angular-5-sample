@@ -18,7 +18,7 @@ private cache = new Map<string, HttpResponse<any>>();
 
         const cachedResponse = this.cache.get(req.urlWithParams);
         if (cachedResponse && !req.headers.get('disable-cache')){
-            console.log(req.urlWithParams + 'has been loaded from cache');
+            console.log(req.urlWithParams + ' has been loaded from cache');
             return Observable.of(cachedResponse.clone());
         }
 

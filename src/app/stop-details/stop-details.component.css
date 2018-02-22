@@ -1,0 +1,26 @@
+.routes-list-container{
+    display: grid;
+    grid-template-columns: 17% 7% auto;
+}
+
+.route-container.icon {
+    font-weight: bold;
+}
+.route-container.number {
+    text-align: center;
+    padding: .2em;
+    margin-bottom: .25em;
+    margin-right: .25em; 
+    font-size: 2em;
+
+}
+.route-container {
+    background: #57b3f1;
+    padding: .5em;
+    margin-bottom: .5em;
+    margin-right: .5em;
+    cursor: pointer;
+}
+.route-container:hover{
+    background: rgb(120, 202, 65);
+}

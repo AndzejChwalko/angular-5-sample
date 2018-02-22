@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:300,700');
+
+:host >>> b {
+	background: rgb(120, 202, 65);
+}
+
+.stop {
+    font-size: 1.5em;
+}
+    
+.stop.title-container {
+    background: #57b3f1;
+    padding: .5em;
+    /*font-weight: bold;*/
+    cursor: pointer;
+}
+
+.stop.title-container:hover {
+    background: rgb(120, 202, 65);
+}
+
+input.search-txt {
+    border: 0;
+    outline: 0;
+    background: #3291d1;
+    border-top: 1px solid #51aae6;
+    border-left: 1px solid #51aae6;
+    border-bottom: 1px solid #1c73ad;
+    border-right: 1px solid #1c73ad;  
+    /*border-bottom-color: bisque;*/
+    font-size: 1em;
+    font-family: 'Raleway', 'Arial';
+    font-weight: bold;
+    color: #fff;
+    padding: 1em;
+    width: 97%;
+}
+input.search-txt:-moz-placeholder {
+    color: #fff;
+}
+
+.search-txt:-webkit-input-placeholder {
+    color: #fff;
+}
+input.search-txt::-webkit-input-placeholder{
+    color: #fff;
+    font-family: 'Raleway', 'Arial';
+}
