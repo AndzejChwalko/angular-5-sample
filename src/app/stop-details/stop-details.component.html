@@ -2,7 +2,8 @@
   <h2>{{stopTitle}}</h2>
   <h3>Current time: {{now.getHours() + ':' + (now.getMinutes() < 10 ? '0'+ now.getMinutes() : now.getMinutes() )+ ':' + (now.getSeconds()<10 ? '0' + now.getSeconds(): now.getSeconds())}}</h3>
   <h3>{{currentDay()}}</h3>
-    <div *ngFor="let element of result | orderBy: {properties:[criteria, criteria2], direction: 1}" >
+    <!--<div *ngFor="let element of result | orderBy: {properties:[groupBy, orderBy], direction: 1}" >-->
+        <div *ngFor="let element of result | groupBy: groupByProperty" >
     <div class="routes-list-container">
         <div class="route-container icon"> {{element.route.type}}</div>
         <div class="route-container number">{{element.route.title}}</div>

@@ -21,6 +21,7 @@
     margin-right: .5em;
     cursor: pointer;
 }
-.route-container:hover{
+
+.routes-list-container:hover > .route-container {
     background: rgb(120, 202, 65);
 }

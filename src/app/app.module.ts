@@ -13,6 +13,8 @@ import { CachingInterceptor } from './cacheInterceptor';
 import { SearchPipe } from './search.pipe';
 import { HighlightPipe } from './highlight.pipe';
 import { OrderByPipe } from './orderby.pipe';
+import { GroupByPipe } from './groupby.pipe';
+
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
@@ -29,6 +31,7 @@ import { StopDetailsComponent } from './stop-details/stop-details.component';
     SearchPipe,
     HighlightPipe,
     OrderByPipe,
+    GroupByPipe,
     StopDetailsComponent
   ],
   imports: [

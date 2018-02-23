@@ -18,8 +18,8 @@ export class StopDetailsComponent implements OnInit {
   stopTitle: string ;
   timings: any[] = [];
   result: any[] = [];
-  criteria: object = {key:'route.type', type: 'string'};
-  criteria2: object ={key: 'route.title', type: 'number'};
+  //groupByProperty: string ='route.type';
+  groupByProperty: object ={groupBy: 'route.type', orderBy: 'route.title', direction: 1, typeOrder: 'number'};
 
   constructor(private _http: HttpService, private router: Router, private route: ActivatedRoute) {
     setInterval(()=>{
