@@ -15,6 +15,20 @@
     color: rgb(131, 235, 62);
     border-bottom: solid thin #fff;
 }
+.alphabet-container {
+    text-align: center;
+}
+span.alphabet {
+    font-weight: bold;
+    font-size: 1.75em;
+    padding: .15em;
+    cursor: pointer;
+}
+
+span.alphabet:hover {
+    color: rgb(131, 235, 62);
+    text-decoration: underline;
+}
 
 .stop {
     font-size: 1.5em;
@@ -58,3 +72,4 @@ input.search-txt::-webkit-input-placeholder{
     color: #fff;
     font-family: 'Raleway', 'Arial';
 }
+

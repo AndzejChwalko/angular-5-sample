@@ -1,6 +1,6 @@
 .routes-list-container{
     display: grid;
-    grid-template-columns: 14% 7% auto;
+    grid-template-columns: 10% 7% auto;
 }
 
 .info-list-container {
@@ -10,6 +10,8 @@
 
 .route-container.icon {
     font-weight: bold;
+    padding: .2em;
+    text-align: center;
 }
 .route-container.number {
     text-align: center;
@@ -58,4 +60,11 @@
 
 .right-bottom-align{
     position: relative;
+}
+
+.transport-icon {
+    fill:#fff;
+  /* fill: #fff;
+   height: 1em;
+   fill: #fff;*/
 }

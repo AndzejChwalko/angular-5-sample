@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpService } from '../http.service';
 
@@ -11,9 +11,9 @@ const GET_ROUTE_TROLLEYBUS = '/api/routes/trolleybus/';
   templateUrl: './stop-details.component.html',
   styleUrls: ['./stop-details.component.css']
 })
-export class StopDetailsComponent implements OnInit {
-  now: Date = new Date();
+export class StopDetailsComponent implements OnInit, OnDestroy {
   nowForTimings: Date = new Date();
+  refreshInterval: any;
   weekday: boolean;
   stopTitle: string ;
   timings: any[] = [];
@@ -21,7 +21,10 @@ export class StopDetailsComponent implements OnInit {
   groupByProperty: object = {groupBy: 'route.type', orderBy: 'route.title', direction: 1, typeOrder: 'number'};
 
   constructor(private _http: HttpService, private router: Router, private route: ActivatedRoute) {
-    
+    this.refreshInterval = setInterval(()=>{
+      this.nowForTimings = new Date();
+    }, 30000);
+
     this.route.params.subscribe(params => {
       if(params['title']){
         this.stopTitle = params['title'];
@@ -77,18 +80,16 @@ export class StopDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
-    setInterval(()=>{
-      this.now = new Date();
-    }, 1000);
-    setInterval(()=>{
-      this.nowForTimings = new Date();
-    }, 30000);
     let day = new Date().getDay();
     this.weekday = day < 1 || day > 5;
   }
 
+  ngOnDestroy(){
+    if(this.refreshInterval){ clearInterval(this.refreshInterval);}
+  }
+
   currentDay(): string {
-    let day = this.now.getDay();
+    let day = new Date().getDay();
     return day > 5 || day < 1 ? 'Weekend': 'Weekday';
   }
 

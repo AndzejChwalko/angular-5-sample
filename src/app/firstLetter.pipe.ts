@@ -20,7 +20,7 @@ export class FirstLetterPipe implements PipeTransform {
             return prev;
         }, {});
 
-        console.log(Object.keys(grouped).map(key => ({ key, value: grouped[key] })));
+        //console.log(Object.keys(grouped).map(key => ({ key, value: grouped[key] })));
 
         return Object.keys(grouped).map(key => ({ key, value: grouped[key] }));
     }

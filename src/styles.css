@@ -81,3 +81,19 @@ input.btn {
     cursor: pointer;
 }
 
+#toTopBtn {
+    display: none;
+    position: fixed;
+    bottom: 1em;
+    right: 1em;
+    z-index: 99;
+    font-weight: bold;
+    font-size: 1.75em;
+    border: none;
+    outline: none;
+    background-color: rgb(61, 221, 21);
+    color: white;
+    cursor: pointer;
+    padding: .3em; 
+
+}

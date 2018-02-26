@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
+import { AngularSvgIconModule } from 'angular-svg-icon';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
@@ -23,6 +24,7 @@ import { AboutComponent } from './about/about.component';
 import { StopsComponent } from './stops/stops.component';
 import { StopDetailsComponent } from './stop-details/stop-details.component';
 import { TimetableComponent } from './timetable/timetable.component';
+import { ClockComponent } from './clock/clock.component';
 
 
 @NgModule({
@@ -37,7 +39,8 @@ import { TimetableComponent } from './timetable/timetable.component';
     GroupByPipe,
     FirstLetterPipe,
     StopDetailsComponent,
-    TimetableComponent
+    TimetableComponent,
+    ClockComponent
   ],
   imports: [
     HttpClientModule,
@@ -45,7 +48,8 @@ import { TimetableComponent } from './timetable/timetable.component';
     AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
-    AngularFontAwesomeModule
+    AngularFontAwesomeModule,
+    AngularSvgIconModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: CachingInterceptor, multi: true},

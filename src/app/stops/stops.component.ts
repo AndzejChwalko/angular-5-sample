@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpService } from '../http.service';
 import { DataService } from '../data.service';
 import { Stop } from './stop.entity';
-//import { SearchPipe } from '../search.pipe';
 
 const GET_ALL_STOPS = '/api/stops/all';
 
@@ -13,16 +12,23 @@ const GET_ALL_STOPS = '/api/stops/all';
   styleUrls: ['./stops.component.css']
 })
 export class StopsComponent implements OnInit {
-
+  
   searchText: string;
   stops: Stop[] =[];
   stopsNames: string[] =[];
-  firstLetters: string[] = [];
+  firstLetters: Array<string> = [];
 
-  constructor(private _http: HttpService, private router: Router) { }
+  constructor(private _http: HttpService, private router: Router, private ref: ChangeDetectorRef) {
+   }
 
   ngOnInit() {
     this.getAllStops();
+  }
+
+  goToSection(letter: string): void {
+    try {
+      document.querySelector('#' + letter).scrollIntoView();
+    } catch (e) { console.log(e);}
   }
 
   getAllStops(): void {
@@ -45,6 +51,9 @@ export class StopsComponent implements OnInit {
   }
 
   addFirstLetter(letter: string) : void {
-    this.firstLetters.push(letter);
+    if (!this.firstLetters.includes(letter)){
+      this.firstLetters.push(letter);
+      this.ref.detectChanges();
+    }
   }
 }
