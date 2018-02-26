@@ -14,26 +14,39 @@ const GET_ROUTE_TROLLEYBUS = '/api/routes/trolleybus/';
 export class StopDetailsComponent implements OnInit {
   now: Date = new Date();
   nowForTimings: Date = new Date();
-
+  weekday: boolean;
   stopTitle: string ;
   timings: any[] = [];
   result: any[] = [];
-  //groupByProperty: string ='route.type';
-  groupByProperty: object ={groupBy: 'route.type', orderBy: 'route.title', direction: 1, typeOrder: 'number'};
+  groupByProperty: object = {groupBy: 'route.type', orderBy: 'route.title', direction: 1, typeOrder: 'number'};
 
   constructor(private _http: HttpService, private router: Router, private route: ActivatedRoute) {
-    setInterval(()=>{
-      this.now = new Date();
-    }, 1000);
-    setInterval(()=>{
-      this.nowForTimings = new Date();
-    }, 30000);
+    
     this.route.params.subscribe(params => {
       if(params['title']){
         this.stopTitle = params['title'];
         this._http.doPost(GET_ALL_TIMINGS_BY_STOP_TITLE, {name:params['title']}, ).subscribe(res => {
-         this.timings = res;
-          
+          this.timings = res;
+         
+          // remove dulicates (with same stop)
+          res = res.reduce((prev, curr)=> {
+            let duplicate = false;
+            for (let elem of prev){
+              if (elem.stop.id === curr.stop.id && elem.route.title === curr.route.title ) { 
+                duplicate = true;
+                if (elem.index > curr.index){ 
+                  let pos = prev.indexOf(elem);
+                  prev.splice(pos, 1);
+                  prev.push(curr);
+                }
+               }
+            }
+            if (!duplicate){
+              prev.push(curr);
+            }
+            return prev;
+          }, []);
+
          res.forEach(element => {
             let title = element.route.title;
             if (element.route.type === 'BUS'){
@@ -64,11 +77,19 @@ export class StopDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
+    setInterval(()=>{
+      this.now = new Date();
+    }, 1000);
+    setInterval(()=>{
+      this.nowForTimings = new Date();
+    }, 30000);
+    let day = new Date().getDay();
+    this.weekday = day < 1 || day > 5;
   }
 
   currentDay(): string {
     let day = this.now.getDay();
-    return day > 5 ? 'Weekend': 'Weekday';
+    return day > 5 || day < 1 ? 'Weekend': 'Weekday';
   }
 
   getNearestTime(route: any): any {
@@ -79,7 +100,7 @@ export class StopDetailsComponent implements OnInit {
     for(let item of this.result){
       if (item.route.id == route.id){
         let timings = item.weekday.data;
-        if (this.nowForTimings.getDay() > 5){
+        if (this.nowForTimings.getDay() > 5 || this.nowForTimings.getDay() < 1){
           timings = item.weekend.data;
         } 
         let keys = Object.keys(timings);
@@ -88,11 +109,11 @@ export class StopDetailsComponent implements OnInit {
             let delta = 73;
             for(let minutes of timings[key]){
               let d = minutes - currentMinutes;
-              delta =(((hours == parseInt(key)) && d > 0) || ((hours < parseInt(key))) && d < delta) ? d : delta;
+              delta =(((hours == parseInt(key)) && d > 0 && d < delta) || ((hours < parseInt(key))) && d < delta) ? d : delta;
             }
             if (delta !== 73){
               let nearMinutes = currentMinutes + delta;
-              find = key + ':' + (nearMinutes > 10 ? nearMinutes : '0' + nearMinutes);
+              find = key + ':' + (nearMinutes > 9 ? nearMinutes : '0' + nearMinutes);
               return find;
             }
           }
@@ -100,6 +121,10 @@ export class StopDetailsComponent implements OnInit {
       }
     }
     return find;
+  }
+
+  showTimeTable(element: any) :void{
+    element.show = !element.show; 
   }
 
 }

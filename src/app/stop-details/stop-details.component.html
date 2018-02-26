@@ -1,15 +1,29 @@
 <div >
-  <h2>{{stopTitle}}</h2>
-  <h3>Current time: {{now.getHours() + ':' + (now.getMinutes() < 10 ? '0'+ now.getMinutes() : now.getMinutes() )+ ':' + (now.getSeconds()<10 ? '0' + now.getSeconds(): now.getSeconds())}}</h3>
-  <h3>{{currentDay()}}</h3>
-    <!--<div *ngFor="let element of result | orderBy: {properties:[groupBy, orderBy], direction: 1}" >-->
-        <div *ngFor="let element of result | groupBy: groupByProperty" >
-    <div class="routes-list-container">
+  <!-- HEADER -->
+  <div class="info-list-container">
+    <div>
+      <h2>{{stopTitle}}</h2>
+      <h3>Current time: {{now.getHours() + ':' + (now.getMinutes() < 10 ? '0'+ now.getMinutes() : now.getMinutes() )+ ':' + (now.getSeconds()<10 ? '0' + now.getSeconds(): now.getSeconds())}}</h3>
+      <h3>{{currentDay()}}</h3>
+    </div>
+    <div class="col right-bottom-align">
+      <div class="btn settings" (click)="addItem()">
+          <i class="fa fa-cog f-cog-spin fa-2x" ></i>
+      </div>
+    </div>
+  </div>
+
+  <!-- ROUTES LIST -->
+  <div *ngFor="let element of result | groupBy: groupByProperty" >
+    <div class="routes-list-container" (click)="showTimeTable(element)">
         <div class="route-container icon"> {{element.route.type}}</div>
         <div class="route-container number">{{element.route.title}}</div>
         <div class="route-container title">   
-          {{element.essentials.first}} - {{element.essentials.last}} <br/>
-          Nearest: {{getNearestTime(element.route)}}
+          <span [ngStyle]="{'font-weight': element.show ? 'bold' : 'normal'}">{{element.essentials.first}} - {{element.essentials.last}} <br/> </span>
+          <span *ngIf="!element.show">Nearest: {{getNearestTime(element.route)}}<br /></span> 
+          <timetable *ngIf="element.show" 
+                    [table]="weekday ? element.weekend.data : element.weekday.data"
+                    [nearest]="getNearestTime(element.route)"></timetable>
         </div>
     </div>
   </div>

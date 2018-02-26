@@ -1,16 +1,24 @@
 <div>
+        
+                
+        
   <div class=" color-dark">
       <div class="col input">
           <input type="text" autocomplete="off" class="search-txt" name="item" placeholder="Enter stop title..." [(ngModel)]="searchText">
-      </div>
-    </div>
-
-  <div class="container color-light">
-      <div *ngFor="let stop of stopsNames | search: searchText: stopsNames"
-       class="stop title-container"
-       [innerHTML]="stop | highlight: searchText"
-       (click)="viewStopDetails(stop)">
-      </div>
+        </div>
   </div>
- 
+  <div *ngFor="let letter of firstLetters | orderBy : {direction : 1}"> {{letter}}</div>
+
+    
+
+    <div *ngFor="let group of stopsNames | search: searchText: stopsNames | firstLetter" class="group-container color-light" >
+        <div class="first-letter" [innerHTML]="group.key"> {{addFirstLetter(group.key)}} </div>
+        <div class="container color-light">
+            <div *ngFor="let stop of group.value | search: searchText: stopsNames"
+            class="stop title-container"
+            [innerHTML]="stop | highlight: searchText"
+            (click)="viewStopDetails(stop)">
+            </div>
+        </div> 
+    </div>
 </div>

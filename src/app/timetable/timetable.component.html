@@ -1,0 +1,20 @@
+<div>
+  <table>
+    <!-- HOURS -->
+    <tr class="hours-row">
+      <td *ngFor="let hour of hours" class="hours-elem" [ngClass]="{'nearest-time' : isNearestTime(hour) }">
+        <span [ngStyle]="{'font-weight': isNearestTime(hour) ? 'bold' : 'normal'}"
+              >{{hour}}</span>
+      </td>
+    </tr>
+
+    <!-- MINUTES -->
+    <tr class="minutes-row">
+      <td *ngFor="let hour of hours" class="minutes-elem" [ngClass]="{'nearest-time' : isNearestTime(hour) }">
+        <span *ngFor="let elem of prepareMinutes(table[hour])"
+        [ngStyle]="{'font-weight': isNearestTime(hour, elem) ? 'bold' : 'normal'}"
+        >{{elem}}<br/></span>
+      </td>
+    </tr>
+  </table>
+</div>

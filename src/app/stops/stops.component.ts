@@ -17,6 +17,7 @@ export class StopsComponent implements OnInit {
   searchText: string;
   stops: Stop[] =[];
   stopsNames: string[] =[];
+  firstLetters: string[] = [];
 
   constructor(private _http: HttpService, private router: Router) { }
 
@@ -41,5 +42,9 @@ export class StopsComponent implements OnInit {
 
   viewStopDetails(stopTitle: string):void {
     this.router.navigate(['stops/datails', {title: stopTitle}])
+  }
+
+  addFirstLetter(letter: string) : void {
+    this.firstLetters.push(letter);
   }
 }

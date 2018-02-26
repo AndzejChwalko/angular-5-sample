@@ -1,0 +1,24 @@
+table { 
+    border-collapse: collapse;
+}
+tr:nth-child(1) {
+     border-bottom: solid thin;
+}
+td.nearest-time {
+    color: rgb(120, 202, 65);
+    background: #fff;
+}
+.hours-row {
+    color: #fff;
+    font-size: 1.65em;
+}
+.hours-elem {
+    padding: .1em .5em;
+}
+.minutes-row {
+    color: #fff;
+    font-size: 1.25em;
+}
+.minutes-elem {
+    padding:.1em .5em;
+}

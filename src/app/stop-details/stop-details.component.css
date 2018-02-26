@@ -1,6 +1,11 @@
 .routes-list-container{
     display: grid;
-    grid-template-columns: 17% 7% auto;
+    grid-template-columns: 14% 7% auto;
+}
+
+.info-list-container {
+    display: grid;
+    grid-template-columns: 50% auto;
 }
 
 .route-container.icon {
@@ -24,4 +29,33 @@
 
 .routes-list-container:hover > .route-container {
     background: rgb(120, 202, 65);
+}
+
+.btn.settings {
+    background: transparent;
+    color: #fff;
+    padding: .75em;
+    border: 2px solid #fff;
+    border-radius: .5em;
+    width: fit-content;
+    position:absolute;
+    bottom:0;
+    right:0;
+    margin-bottom: .5em;
+    margin-right: .5em;
+    cursor: pointer;
+}
+
+.btn.settings:hover > .f-cog-spin {
+    animation: pulse 1s infinite linear;
+  }
+
+@keyframes pulse {
+	0% { opacity: 1; }
+	50% { opacity: 0.3; }
+	100% { opacity: 1; }
+}
+
+.right-bottom-align{
+    position: relative;
 }
